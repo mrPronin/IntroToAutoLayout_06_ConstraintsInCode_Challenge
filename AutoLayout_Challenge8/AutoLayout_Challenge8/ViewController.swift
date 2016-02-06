@@ -18,17 +18,17 @@ class ViewController: UIViewController {
     let containerView = UIView()
     containerView.translatesAutoresizingMaskIntoConstraints = false
     containerView.backgroundColor = UIColor.orangeColor()
+    containerView.layer.cornerRadius = 10.0
+    containerView.clipsToBounds = true
     view.addSubview(containerView)
     
     NSLayoutConstraint(item: containerView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: containerWidth).active = true
-    NSLayoutConstraint(item: containerView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 200.0).active = true
     NSLayoutConstraint(item: containerView, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0).active = true
     NSLayoutConstraint(item: containerView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 0.0).active = true
     
     let userNameLabel = UILabel()
     userNameLabel.translatesAutoresizingMaskIntoConstraints = false
     userNameLabel.text = "Username:"
-    userNameLabel.backgroundColor = UIColor.grayColor()
     userNameLabel.setContentCompressionResistancePriority(UILayoutPriority(800), forAxis: .Horizontal)
     containerView.addSubview(userNameLabel)
     
@@ -47,8 +47,7 @@ class ViewController: UIViewController {
     
     let passwordLabel = UILabel()
     passwordLabel.translatesAutoresizingMaskIntoConstraints = false
-    passwordLabel.text = "Password: Password"
-    passwordLabel.backgroundColor = UIColor.grayColor()
+    passwordLabel.text = "Password:"
     passwordLabel.setContentCompressionResistancePriority(UILayoutPriority(800), forAxis: .Horizontal)
     containerView.addSubview(passwordLabel)
     
@@ -66,6 +65,17 @@ class ViewController: UIViewController {
     
     NSLayoutConstraint(item: userNameTextField, attribute: .Left, relatedBy: .Equal, toItem: passwordTextField, attribute: .Left, multiplier: 1.0, constant: 0.0).active = true
     NSLayoutConstraint(item: userNameTextField, attribute: .Right, relatedBy: .Equal, toItem: passwordTextField, attribute: .Right, multiplier: 1.0, constant: 0.0).active = true
+    
+    let submitButton = UIButton()
+    submitButton.translatesAutoresizingMaskIntoConstraints = false
+    submitButton.setTitle("Submit", forState: .Normal)
+    submitButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+    submitButton.setTitleColor(UIColor.grayColor(), forState: .Highlighted)
+    containerView.addSubview(submitButton)
+    
+    NSLayoutConstraint(item: submitButton, attribute: .CenterX, relatedBy: .Equal, toItem: containerView, attribute: .CenterX, multiplier: 1.0, constant: 0.0).active = true
+    NSLayoutConstraint(item: submitButton, attribute: .Top, relatedBy: .Equal, toItem: passwordTextField, attribute: .Bottom, multiplier: 1.0, constant: 8.0).active = true
+    NSLayoutConstraint(item: submitButton, attribute: .Bottom, relatedBy: .Equal, toItem: containerView, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0).active = true
   }
 
   override func didReceiveMemoryWarning() {
